@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import PostsContext from './contexts/PostsContext'
 import PostsPage from './pages/PostsPage'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 
 function App() {
@@ -24,9 +25,14 @@ function App() {
   useEffect(fetchPosts, []);
 
   return (
+
     <PostsContext.Provider value={{ posts }
     }>
-      <PostsPage />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<PostsPage />} />
+        </Routes>
+      </BrowserRouter>
     </PostsContext.Provider >
   )
 }
